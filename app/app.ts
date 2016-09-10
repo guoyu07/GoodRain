@@ -9,6 +9,7 @@ import {CitysPage} from './pages/citys/citys';
     templateUrl: 'build/app.html'
 })
 class MyApp {
+
     @ViewChild(Nav) nav:Nav;
 
     // make HelloIonicPage the root (or first) page
