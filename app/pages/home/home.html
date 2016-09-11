@@ -3,7 +3,7 @@
         <button menuToggle>
             <ion-icon name="menu"></ion-icon>
         </button>
-        <ion-title>首页</ion-title>
+        <ion-title></ion-title>
         <ion-buttons end (click)="doLocation()">
             <button>
                 <ion-icon name="pin"></ion-icon>
@@ -13,23 +13,14 @@
 </ion-header>
 
 <ion-content padding>
-    <h2>当前定位信息</h2>
+    <!--头部主要天气信息-->
+    <div class="content-top-temperature">
+        <span class="city">{{geocodes.city}}</span>
+        <span class="weather">{{geocodes.weather}}</span>
+        <span class="temperature">{{geocodes.temperature}}</span>
+    </div>
+    <!--天气参考信息-->
+    <div class="content-top-detail">
 
-    <p>country: {{geocodes.country}}</p>
-
-    <p>province: {{geocodes.province}}</p>
-
-    <p>city: {{geocodes.city}}</p>
-
-    <p>district: {{geocodes.district}}</p>
-
-    <p>township:{{geocodes.township}}</p>
-
-    <p>adcode: {{geocodes.adcode}}</p>
-
-    <p>citycode: {{geocodes.citycode}}</p>
-
-    <p>towncode: {{geocodes.towncode}}</p>
-
-    <p>formatted_address: {{geocodes.formatted_address}}</p>
+    </div>
 </ion-content>
