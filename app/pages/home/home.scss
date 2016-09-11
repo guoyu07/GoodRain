@@ -1,11 +1,16 @@
 
-.home-bg {
-  div {
-    background-color: #fff;
+.home-header {
+  .home-bg {
+    div {
+      background-color: #fff;
+    }
+  }
+  ion-title {
+    visibility: hidden;
   }
 }
 
-ion-header::after {
+.home-header::after {
   position: absolute;
   bottom: -5px;
   left: 0;
@@ -15,8 +20,4 @@ ion-header::after {
   background-repeat: repeat-x;
   background-position: 0 -2px;
   content: "";
-}
-
-.detail-nav-right {
-  visibility: hidden;
 }

@@ -1,10 +1,10 @@
-<ion-header>
+<ion-header class="home-header">
     <ion-navbar class="home-bg">
         <button menuToggle>
             <ion-icon name="menu"></ion-icon>
         </button>
-        <ion-title></ion-title>
-        <ion-buttons end>
+        <ion-title>首页</ion-title>
+        <ion-buttons end (click)="doLocation()">
             <button>
                 <ion-icon name="pin"></ion-icon>
             </button>
@@ -12,7 +12,24 @@
     </ion-navbar>
 </ion-header>
 
-
 <ion-content padding>
+    <h2>当前定位信息</h2>
 
+    <p>country: {{geocodes.country}}</p>
+
+    <p>province: {{geocodes.province}}</p>
+
+    <p>city: {{geocodes.city}}</p>
+
+    <p>district: {{geocodes.district}}</p>
+
+    <p>township:{{geocodes.township}}</p>
+
+    <p>adcode: {{geocodes.adcode}}</p>
+
+    <p>citycode: {{geocodes.citycode}}</p>
+
+    <p>towncode: {{geocodes.towncode}}</p>
+
+    <p>formatted_address: {{geocodes.formatted_address}}</p>
 </ion-content>
