@@ -24,6 +24,8 @@ export class HomePage {
                     if (geo["resultcode"] === "200") {
                         var result = geo["result"];
                         var today = result["today"];
+                        //根据当前天气返回对应的图标路径
+
                         //构造函数封装数据信息
                         this.geocodes = new CurrentWeather(
                             today.city,
@@ -36,6 +38,7 @@ export class HomePage {
                             today.dressing_advice,
                             today.travel_index,
                             today.exercise_index,
+                            HomePage.getWeatherImgUrl(today["weather_id"]["fa"]),
                             resp.coords.longitude,
                             resp.coords.latitude
                         );
@@ -44,24 +47,29 @@ export class HomePage {
         });
     }
 
+    //根据返回的wid的大对应的图标url
+    static getWeatherImgUrl(wid) {
+        return "./img/weather/weather_" + wid + ".png";
+    }
+
     //进入页面进行初始化定位信息,先从缓存数据中拿数据信息，没有在进行定位拿数据信息
     ionViewWillEnter() {
-        this.doLocation();
-        /**
-         this.geocodes = new CurrentWeather(
-         "龙泉驿",
-         "2016年10月9日",
-         "星期六",
-         "8℃~20℃",
-         "晴转多云",
-         "西南风微风",
-         "较冷",
-         "建议着大衣、呢外套加毛衣、卫衣等服装。",
-         "适宜",
-         "适宜",
-         "106.234561",
-         "50.2345321");
-         **/
+        //this.doLocation();
+        this.geocodes = new CurrentWeather(
+            "龙泉驿",
+            "2016年10月9日",
+            "星期六",
+            "8℃~20℃",
+            "晴转多云",
+            "西南风微风",
+            "较冷",
+            "建议着大衣、呢外套加毛衣、卫衣等服装。",
+            "适宜",
+            "适宜",
+            HomePage.getWeatherImgUrl("11"),
+            "106.234561",
+            "50.2345321");
+
     }
 
 }
@@ -89,12 +97,14 @@ class CurrentWeather {
     travel_index:any;
     /*晨练指数*/
     exercise_index:any;
+    /*天气图标*/
+    weather_icon:any = "./img/weather/weather_00.png";
     /*经度*/
     longitude:any;
     /*纬度*/
     latitude:any;
 
-    constructor(city?, date_y?, week?, temperature?, weather?, wind?, dressing_index?, dressing_advice?, travel_index?, exercise_index?, longitude?, latitude?) {
+    constructor(city?, date_y?, week?, temperature?, weather?, wind?, dressing_index?, dressing_advice?, travel_index?, exercise_index?, weather_icon?, longitude?, latitude?) {
         this.city = city;
         this.date_y = date_y;
         this.week = week;
@@ -105,6 +115,7 @@ class CurrentWeather {
         this.dressing_index = dressing_index;
         this.travel_index = travel_index;
         this.exercise_index = exercise_index;
+        this.weather_icon = weather_icon;
         this.longitude = longitude;
         this.latitude = latitude;
     }
