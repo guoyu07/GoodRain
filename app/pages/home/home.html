@@ -12,16 +12,28 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-    <!--头部主要天气信息-->
-    <div class="content-top-temperature">
-        <span class="city">{{geocodes.city}}</span>
-        <span class="weather">{{geocodes.weather}}</span>
-        <span class="weather-icon"><img src="{{geocodes.weather_icon}}" alt=""/></span>
-        <span class="temperature">{{geocodes.temperature}}</span>
-    </div>
-    <!--天气参考信息-->
-    <div class="content-top-detail">
+<ion-content padding class="home-content">
+    <ion-grid>
+        <ion-row center>
+            <ion-col offset-25 width-50 class="city">
+                {{geocodes.city}}
+            </ion-col>
 
-    </div>
+        </ion-row>
+        <ion-row>
+            <ion-col offset-25 width-50 class="weather">
+                {{geocodes.weather}}
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col offset-25 width-50 class="weather-icon">
+                <img src="{{geocodes.weather_icon}}" alt=""/>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col width-100 class="temperature">
+                {{geocodes.temperature}}
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-content>
