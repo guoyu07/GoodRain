@@ -9,11 +9,10 @@ export class CityDetailsPage {
     selectedItem:any;
 
     constructor(public navCtrl:NavController, navParams:NavParams, public viewCtrl:ViewController) {
-        // If we navigated to this page, we will have an item available as a nav param
         this.selectedItem = navParams.get('item');
     }
 
     ionViewWillEnter() {
-        this.viewCtrl.setBackButtonText('');
+        this.viewCtrl.setBackButtonText('返回');
     }
 }

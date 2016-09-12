@@ -1,23 +1,19 @@
-<ion-header>
-    <ion-navbar>
-        <button menuToggle *ngIf="!selectedItem">
+<ion-header class="city-details-header">
+    <ion-navbar class="city-details-bg">
+        <button menuToggle>
             <ion-icon name="menu"></ion-icon>
         </button>
         <ion-title>城市简介</ion-title>
-        <ion-buttons end class="detail-nav-right">
+        <ion-buttons end class="hidden">
             <button>
-                <ion-icon name="pin"></ion-icon>
+                <ion-icon name="add"></ion-icon>
             </button>
         </ion-buttons>
     </ion-navbar>
 </ion-header>
 
 <ion-content>
-    <div *ngIf="selectedItem" class="selection">
-        <b>{{selectedItem.title}}</b>
-        <ion-icon name="{{selectedItem.icon}}"></ion-icon>
-        <div>
-            You navigated here from <b>{{selectedItem.title}}</b>
-        </div>
+    <div>
+        <h1 center>{{selectedItem.cityName}}</h1>
     </div>
 </ion-content>

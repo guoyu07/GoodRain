@@ -1,7 +1,24 @@
-div.selection {
-  font-size: 22px;
-  display: block;
-  text-align: center;
-  padding-top: 5%;
+/*顶部nav的背景颜色*/
+.city-details-header {
+  .city-details-bg {
+    div {
+      background-color: #fff;
+    }
+    .hidden {
+      visibility: hidden;
+    }
+  }
+}
+
+.city-details-header::after {
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background-image: none;
+  background-repeat: repeat-x;
+  background-position: 0 -2px;
+  content: "";
 }
 

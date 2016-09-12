@@ -6,35 +6,41 @@ import {CityDetailsPage} from '../city-details/city-details';
     templateUrl: 'build/pages/citys/citys.html'
 })
 
-
 export class CitysPage {
-    selectedItem:any;
-    icons:string[];
-    items:Array<{title: string, note: string, icon: string}>;
 
+    private items = [];
 
     constructor(public navCtrl:NavController, navParams:NavParams) {
-        // If we navigated to this page, we will have an item available as a nav param
-        this.selectedItem = navParams.get('item');
-
-        this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
-            'american-football', 'boat', 'bluetooth', 'build', 'flask',
-            'wifi', 'beer', 'football', 'basketball', 'paper-plane',
-            'american-football', 'boat', 'bluetooth', 'build'];
-
-        this.items = [];
-        for (let i = 1; i < this.icons.length; i++) {
-            this.items.push({
-                title: 'Item ' + i,
-                note: 'This is item #' + i,
-                icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-            });
-        }
+        this.loadCitysData();
     }
 
-    itemTapped(event, item) {
-        this.navCtrl.push(CityDetailsPage, {
-            item: item
+    /**
+     * 点击城市，进入详细的城市详细
+     * @param event 当前事件
+     * @param item 传入参数
+     */
+    clickCity(event, item) {
+        this.navCtrl.push(CityDetailsPage, {item: item});
+    }
+
+    //初始化数据信息
+    loadCitysData() {
+        this.items.push({
+            cityName: '成都',
+            areaCode: "028"
+        });
+        this.items.push({
+            cityName: '遵义',
+            areaCode: "0852"
+        });
+        this.items.push({
+            cityName: "西安",
+            areaCode: "029"
+        });
+        this.items.push({
+            cityName: "北京",
+            areaCode: "010"
         });
     }
+
 }

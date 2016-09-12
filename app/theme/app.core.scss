@@ -17,3 +17,29 @@ ion-menu {
     }
   }
 }
+
+.menu-inner {
+
+  .item {
+    padding-left: 0;
+    border-top: none;
+
+    .item-inner {
+      padding-right: 0;
+      border: none;
+    }
+  }
+
+  ion-label {
+    text-align: center;
+  }
+}
+
+/*去掉边框线*/
+ion-list > .item:first-child, ion-list > .item-wrapper:first-child .item {
+  border-top: none;
+}
+
+ion-list > .item:last-child, ion-list > .item-wrapper:last-child .item {
+  border-bottom: none;
+}

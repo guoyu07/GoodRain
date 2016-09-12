@@ -1,26 +1,21 @@
-<ion-header>
-    <ion-navbar>
+<ion-header class="city-header">
+    <ion-navbar class="city-bg">
         <button menuToggle>
             <ion-icon name="menu"></ion-icon>
         </button>
         <ion-title>城市列表</ion-title>
         <ion-buttons end>
-            <button><ion-icon name="add"></ion-icon></button>
+            <button>
+                <ion-icon name="add"></ion-icon>
+            </button>
         </ion-buttons>
     </ion-navbar>
 </ion-header>
 
-<ion-content>
-    <ion-list>
-        <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-            <ion-icon name="{{item.icon}}" item-left></ion-icon>
-            {{item.title}}
-            <div class="item-note" item-right>
-                {{item.note}}
-            </div>
-        </button>
-    </ion-list>
-    <div *ngIf="selectedItem" padding>
-        You navigated here from <b>{{selectedItem.title}}</b>
-    </div>
+<ion-content class="city-content">
+    <ion-grid>
+        <ion-row>
+            <ion-col width-33 *ngFor="let item of items"><span (click)="clickCity($event,item)">{{item.cityName}}</span></ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-content>
