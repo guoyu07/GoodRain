@@ -1,15 +1,19 @@
 <ion-menu [content]="content" type="overlay">
-    <ion-toolbar>
-        <ion-title></ion-title>
-    </ion-toolbar>
-    <ion-content>
+    <ion-grid class="menu-grid">
+        <ion-row center>
+            <ion-col width-100>
+                <img src="./img/menu-logo.png" alt="logo"/>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-content class="menu-list">
         <ion-list>
             <button ion-item *ngFor="let p of pages" (click)="openPage(p)">
                 {{p.title}}
             </button>
+            <span class="copy-right">copyright © GoodRain 1.0.0</span>
         </ion-list>
     </ion-content>
-
 </ion-menu>
 
 <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
