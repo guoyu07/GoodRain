@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
-import { Geolocation } from 'ionic-native';
+import { Geolocation , Vibration} from 'ionic-native';
+import {NavController, ViewController, LoadingController, Alert, Toast, Modal} from 'ionic-angular';
 import {Http} from '@angular/http';
 import {BasePath} from '../../base/basePath';
 
@@ -10,12 +11,18 @@ export class HomePage {
 
     geocodes = new CurrentWeather();
 
-    constructor(private http:Http) {
+    constructor(private http:Http, private navController:NavController, public loadingCtrl:LoadingController) {
     }
 
     //获得当前定位信息
     doLocation() {
         var basePath = new BasePath(this.http);
+        //天气加载中
+        var loading = this.loadingCtrl.create({
+            content: '正在更新天气信息...',
+            spinner: "bubbles"
+        });
+        loading.present();
         Geolocation.getCurrentPosition().then((resp) => {
             //远程调用接口获取地理编码
             this.http.get(basePath.getWeatherUrl(resp.coords.longitude, resp.coords.latitude))
@@ -24,8 +31,6 @@ export class HomePage {
                     if (geo["resultcode"] === "200") {
                         var result = geo["result"];
                         var today = result["today"];
-                        //根据当前天气返回对应的图标路径
-
                         //构造函数封装数据信息
                         this.geocodes = new CurrentWeather(
                             today.city,
@@ -42,6 +47,10 @@ export class HomePage {
                             resp.coords.longitude,
                             resp.coords.latitude
                         );
+                        //数据加载成功之后,关闭加载框
+                        loading.dismiss();
+                        //随后震动提醒
+                        Vibration.vibrate(500);
                     }
                 });
         });
@@ -73,7 +82,6 @@ export class HomePage {
     }
 
 }
-
 
 //定位地区实体信息
 class CurrentWeather {

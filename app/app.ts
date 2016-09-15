@@ -4,6 +4,8 @@ import {StatusBar} from 'ionic-native';
 import {LocalNotifications} from 'ionic-native';
 import {HomePage} from './pages/home/home';
 import {CitysPage} from './pages/citys/citys';
+import {AuthorPage} from './pages/author/author';
+import {FeedbackPage} from './pages/feedback/feedback';
 
 @Component({
     templateUrl: 'build/app.html'
@@ -21,7 +23,9 @@ class MyApp {
         //添加侧边栏需要的页面
         this.pages = [
             {title: '当前地区', component: HomePage},
-            {title: '城市列表', component: CitysPage}
+            {title: '城市列表', component: CitysPage},
+            {title: '作者简介', component: AuthorPage},
+            {title: '反馈', component: FeedbackPage},
         ];
     }
 
@@ -32,15 +36,10 @@ class MyApp {
                 // Here you can do any higher level native things you might need.
                 StatusBar.styleDefault();
                 //添加定时器
-                console.log("定时器...");
-                var now = new Date().getTime();
-                var day_11_pm = new Date(now + 5 * 1000);
                 LocalNotifications.schedule({
-                    id: new Date().getMilliseconds(),
-                    title: "提醒",
-                    text: '亲！记得关注明天的天气，方便出行。',
-                    every: 'day',
-                    icon: './img/local-warn.png'
+                    id: 1,
+                    text: '记得关注明天的天气，方便出行。',
+                    every: "minute"   //可以实现每分钟调用,但是也不是正分钟调用, 如现在时间是12:21:12 那么调用的时间为 12:22:12,并不是整点
                 });
                 //本地推送，点击之后的事件处理
                 LocalNotifications.on("click", function (notification) {
@@ -50,7 +49,7 @@ class MyApp {
         );
     }
 
-//点击侧边栏切换页面
+    //点击侧边栏切换页面
     openPage(page) {
         // close the menu when clicking a link from the menu
         this.menu.close();
@@ -60,3 +59,10 @@ class MyApp {
 }
 
 ionicBootstrap(MyApp);
+
+
+/*
+ 上传代码到云端
+ ionic login
+ ionic upload
+ */

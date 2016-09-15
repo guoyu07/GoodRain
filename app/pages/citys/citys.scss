@@ -50,6 +50,9 @@ ion-title {
       font-size: 2em;
       writing-mode: vertical-lr;
       color: #424242;
+      &:active {
+        background-color: #eaeaf3;
+      }
     }
   }
 }
