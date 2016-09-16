@@ -1,22 +1,16 @@
 /*顶部nav的背景颜色*/
-.city-details-header {
-  .city-details-bg {
+.setting-header {
+  .setting-bg {
     div {
       background-color: #fff;
     }
-    .hidden {
+    ion-buttons {
       visibility: hidden;
-    }
-    .back-default {
-      font-size: 2rem;
-    }
-    .toolbar-title {
-      padding-right: 7.1rem;
     }
   }
 }
 
-.city-details-header::after {
+.setting-header::after {
   position: absolute;
   bottom: -5px;
   left: 0;
@@ -28,3 +22,14 @@
   content: "";
 }
 
+/*标题栏文字居中*/
+ion-title {
+  .toolbar-title {
+    text-align: center;
+  }
+}
+
+/*内容区域*/
+.setting-content {
+  //换行处理
+}

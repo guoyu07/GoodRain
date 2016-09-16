@@ -6,6 +6,8 @@ import {HomePage} from './pages/home/home';
 import {CitysPage} from './pages/citys/citys';
 import {AuthorPage} from './pages/author/author';
 import {FeedbackPage} from './pages/feedback/feedback';
+import {SettingPage} from './pages/setting/setting';
+import {UtilBase} from './base/util';
 
 @Component({
     templateUrl: 'build/app.html'
@@ -25,6 +27,7 @@ class MyApp {
             {title: '当前地区', component: HomePage},
             {title: '城市列表', component: CitysPage},
             {title: '作者简介', component: AuthorPage},
+            {title: '设置', component: SettingPage},
             {title: '反馈', component: FeedbackPage},
         ];
     }
@@ -38,7 +41,8 @@ class MyApp {
                 //添加定时器
                 LocalNotifications.schedule({
                     id: 1,
-                    text: '记得关注明天的天气，方便出行。',
+                    text: '每个分钟整点提醒,记得关注明天的天气，方便出行。',
+                    firstAt: new Date(new Date().getTime() + UtilBase.getSettingHourAndMinutes(22, 0)),
                     every: "minute"   //可以实现每分钟调用,但是也不是正分钟调用, 如现在时间是12:21:12 那么调用的时间为 12:22:12,并不是整点
                 });
                 //本地推送，点击之后的事件处理
