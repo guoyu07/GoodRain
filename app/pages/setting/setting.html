@@ -12,6 +12,15 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content class="setting-content">
-
+<ion-content class="setting-content" padding>
+    <ion-list>
+        <ion-item>
+            <ion-label>定时提醒功能</ion-label>
+            <ion-datetime displayFormat="H/m" displayFormat="HH点 mm分" [(ngModel)]="notification_date"></ion-datetime>
+        </ion-item>
+        <ion-item>
+            <ion-label>更新首页震动</ion-label>
+            <ion-toggle [checked]="vTrue" (ionChange)="toggle_vibrate($event)"></ion-toggle>
+        </ion-item>
+    </ion-list>
 </ion-content>

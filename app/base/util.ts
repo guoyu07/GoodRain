@@ -31,7 +31,6 @@ export class UtilBase {
         var now_date = new Date();//当前时间
         var settingTime = new Date();//定时时间设置
         var later;
-        console.log("11");
         if (now_date.getHours() >= hour && now_date.getMinutes() > minutes) {//当前时间小时大设置时间小时(定时为明天)
             settingTime.setDate(now_date.getDate() + 1);//推迟一天提醒
             settingTime.setHours(hour);

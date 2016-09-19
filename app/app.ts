@@ -2,6 +2,8 @@ import {Component, ViewChild} from '@angular/core';
 import {ionicBootstrap, Platform, MenuController, Nav} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
 import {LocalNotifications} from 'ionic-native';
+import { Storage, LocalStorage } from 'ionic-angular';
+
 import {HomePage} from './pages/home/home';
 import {CitysPage} from './pages/citys/citys';
 import {AuthorPage} from './pages/author/author';
@@ -20,6 +22,8 @@ class MyApp {
     rootPage:any = HomePage;
     pages:Array<{title: string, component: any}>;
 
+
+
     constructor(public platform:Platform, public menu:MenuController) {
         this.initializeApp();
         //添加侧边栏需要的页面
@@ -30,6 +34,10 @@ class MyApp {
             {title: '设置', component: SettingPage},
             {title: '反馈', component: FeedbackPage},
         ];
+        var isExist = localStorage.getItem("flagVibrate");
+        if(!isExist){
+            localStorage.setItem("flagVibrate","vibrate");
+        }
     }
 
     //系统初始化之处理事件
@@ -40,10 +48,11 @@ class MyApp {
                 StatusBar.styleDefault();
                 //添加定时器
                 LocalNotifications.schedule({
-                    id: 1,
-                    text: '每个分钟整点提醒,记得关注明天的天气，方便出行。',
-                    firstAt: new Date(new Date().getTime() + UtilBase.getSettingHourAndMinutes(22, 0)),
-                    every: "minute"   //可以实现每分钟调用,但是也不是正分钟调用, 如现在时间是12:21:12 那么调用的时间为 12:22:12,并不是整点
+                    id: 1000,
+                    text: '记得关注明天的天气，方便出行。',
+                    firstAt: new Date(new Date().getTime() + UtilBase.getSettingHourAndMinutes(10, 10)),
+                    every: "day",
+                    icon: "res://local-warn"
                 });
                 //本地推送，点击之后的事件处理
                 LocalNotifications.on("click", function (notification) {

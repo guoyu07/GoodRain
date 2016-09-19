@@ -11,7 +11,10 @@ export class HomePage {
 
     geocodes = new CurrentWeather();
 
+    private flagVibrate;
+
     constructor(private http:Http, private navController:NavController, public loadingCtrl:LoadingController) {
+        this.flagVibrate = localStorage.getItem("flagVibrate");
     }
 
     //获得当前定位信息
@@ -50,7 +53,9 @@ export class HomePage {
                         //数据加载成功之后,关闭加载框
                         loading.dismiss();
                         //随后震动提醒
-                        Vibration.vibrate(500);
+                        if (this.flagVibrate = "vibrate") {
+                            Vibration.vibrate(1500);
+                        }
                     }
                 });
         });

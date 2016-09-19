@@ -31,5 +31,9 @@ ion-title {
 
 /*内容区域*/
 .setting-content {
-  //换行处理
+  //时间控件文本颜色
+  .item-input ion-label, .item-select ion-label, .item-datetime ion-label {
+    color: #000;
+  }
+
 }
