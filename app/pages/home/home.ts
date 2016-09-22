@@ -53,7 +53,7 @@ export class HomePage {
                         //数据加载成功之后,关闭加载框
                         loading.dismiss();
                         //随后震动提醒
-                        if (this.flagVibrate = "vibrate") {
+                        if (this.flagVibrate === "vibrate") {
                             Vibration.vibrate(1500);
                         }
                     }

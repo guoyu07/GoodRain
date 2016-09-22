@@ -19,6 +19,7 @@ export class SettingPage {
     private vTrue;
 
     constructor(public toastCtrl:ToastController) {
+        //初始化默认值
         this.flagVibrate = localStorage.getItem("flagVibrate");
         if (this.flagVibrate === "vibrate") {
             this.vTrue = true;
@@ -33,7 +34,7 @@ export class SettingPage {
         var minutes = +this.notification_date.substr(this.notification_date.lastIndexOf(":") + 1, this.notification_date.length);
         //添加定时器
         LocalNotifications.update({
-            id: 1,
+            id: 1000,
             text: '记得关注明天的天气，方便出行。',
             firstAt: new Date(new Date().getTime() + UtilBase.getSettingHourAndMinutes(hour, minutes)),
             every: "day"
@@ -42,6 +43,7 @@ export class SettingPage {
             message: '提醒时间设置成功',
             duration: 3000
         });
+        console.log(new Date(new Date().getTime() + UtilBase.getSettingHourAndMinutes(hour, minutes)));
         toast.present();
     }
 
