@@ -1,0 +1,113 @@
+{
+  "resultcode": "200",
+  "reason": "successed!",
+  "result": {
+    "sk": {
+      "temp": "24",
+      "wind_direction": "东北风",
+      "wind_strength": "2级",
+      "humidity": "68%",
+      "time": "15:01"
+    },
+    "today": {
+      "temperature": "19℃~23℃",
+      "weather": "阴转小雨",
+      "weather_id": {
+        "fa": "02",
+        "fb": "07"
+      },
+      "wind": "南风微风",
+      "week": "星期六",
+      "city": "龙泉驿",
+      "date_y": "2016年09月24日",
+      "dressing_index": "舒适",
+      "dressing_advice": "建议着长袖T恤、衬衫加单裤等服装。年老体弱者宜着针织长袖衬衫、马甲和长裤。",
+      "uv_index": "最弱",
+      "comfort_index": "",
+      "wash_index": "不宜",
+      "travel_index": "较适宜",
+      "exercise_index": "较适宜",
+      "drying_index": ""
+    },
+    "future": {
+      "day_20160924": {
+        "temperature": "19℃~23℃",
+        "weather": "阴转小雨",
+        "weather_id": {
+          "fa": "02",
+          "fb": "07"
+        },
+        "wind": "南风微风",
+        "week": "星期六",
+        "date": "20160924"
+      },
+      "day_20160925": {
+        "temperature": "19℃~25℃",
+        "weather": "阴转小雨",
+        "weather_id": {
+          "fa": "02",
+          "fb": "07"
+        },
+        "wind": "南风微风",
+        "week": "星期日",
+        "date": "20160925"
+      },
+      "day_20160926": {
+        "temperature": "19℃~26℃",
+        "weather": "小雨",
+        "weather_id": {
+          "fa": "07",
+          "fb": "07"
+        },
+        "wind": "北风微风",
+        "week": "星期一",
+        "date": "20160926"
+      },
+      "day_20160927": {
+        "temperature": "20℃~26℃",
+        "weather": "阴转多云",
+        "weather_id": {
+          "fa": "02",
+          "fb": "01"
+        },
+        "wind": "微风",
+        "week": "星期二",
+        "date": "20160927"
+      },
+      "day_20160928": {
+        "temperature": "19℃~28℃",
+        "weather": "多云",
+        "weather_id": {
+          "fa": "01",
+          "fb": "01"
+        },
+        "wind": "微风",
+        "week": "星期三",
+        "date": "20160928"
+      },
+      "day_20160929": {
+        "temperature": "20℃~26℃",
+        "weather": "阴转多云",
+        "weather_id": {
+          "fa": "02",
+          "fb": "01"
+        },
+        "wind": "微风",
+        "week": "星期四",
+        "date": "20160929"
+      },
+      "day_20160930": {
+        "temperature": "19℃~25℃",
+        "weather": "阴转小雨",
+        "weather_id": {
+          "fa": "02",
+          "fb": "07"
+        },
+        "wind": "南风微风",
+        "week": "星期五",
+        "date": "20160930"
+      }
+    }
+  },
+  "error_code": 0
+}

@@ -20,7 +20,9 @@ export class CitysPage {
      * @param item 传入参数
      */
     clickCity(event, item) {
+        console.log("点击的单个项目...");
         this.navCtrl.push(CityDetailsPage, {item: item});
+        event.preventDefault();
     }
 
     //初始化数据信息

@@ -26,7 +26,7 @@
         </ion-row>
         <ion-row>
             <ion-col offset-25 width-50 class="weather-icon">
-                <img src="{{geocodes.weather_icon}}" alt=""/>
+                <img src="{{geocodes.weather_id}}" alt="天气图片" *ngIf="geocodes.weather_id"/>
             </ion-col>
         </ion-row>
         <ion-row>
