@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import { Geolocation , Vibration} from 'ionic-native';
+import {Vibration} from 'ionic-native';
 import {NavController, ViewController, LoadingController, Alert, Toast, Modal} from 'ionic-angular';
 import {Http} from '@angular/http';
 import {BasePath} from '../../base/basePath';
@@ -12,9 +12,16 @@ export class HomePage {
 
     geocodes;
 
+    longitude:number;
+    latitude:number;
+
     private flagVibrate;
 
-    constructor(private http:Http, private navController:NavController, public loadingCtrl:LoadingController) {
+    constructor(private http?:Http, private navController?:NavController, public loadingCtrl?:LoadingController) {
+        //获取经纬度
+        this.longitude = +localStorage.getItem("longitude");
+        this.latitude = +localStorage.getItem("latitude");
+        //权限判断
         this.flagVibrate = localStorage.getItem("flagVibrate");
         let weaterObj = JSON.parse(localStorage.getItem("weatherEntity"));
         if (weaterObj) {
@@ -33,19 +40,17 @@ export class HomePage {
             spinner: "bubbles"
         });
         loading.present();
-        Geolocation.getCurrentPosition().then((resp) => {
-            //远程调用接口获取地理编码
-            this.http.get(basePath.getGeocoderUrl(resp.coords.longitude, resp.coords.latitude))
-                .subscribe(data => {
-                    var geo = JSON.parse(data["_body"]);
-                    if (geo["status"]) {
-                        var result = geo["regeocode"];
-                        var cityName = result["addressComponent"]["city"];
-                        //返回的城市名称，继续调用方法返回数据信息
-                        this.getWeatherByCityName(cityName, loading);
-                    }
-                });
-        });
+        //远程调用接口获取地理编码
+        this.http.get(basePath.getGeocoderUrl(this.longitude, this.latitude))
+            .subscribe(data => {
+                var geo = JSON.parse(data["_body"]);
+                if (geo["status"]) {
+                    var result = geo["regeocode"];
+                    var cityName = result["addressComponent"]["city"];
+                    //返回的城市名称，继续调用方法返回数据信息
+                    this.getWeatherByCityName(cityName, loading);
+                }
+            });
     }
 
 
@@ -81,28 +86,29 @@ export class HomePage {
 
     //进入页面进行初始化定位信息,先从缓存数据中拿数据信息，没有在进行定位拿数据信息
     ionViewWillEnter() {
+        //获取经纬度
+        this.longitude = +localStorage.getItem("longitude");
+        this.latitude = +localStorage.getItem("latitude");
         //在请求定位信息
         var basePath = new BasePath(this.http);
-        Geolocation.getCurrentPosition().then((resp) => {
-            //远程调用接口获取地理编码
-            this.http.get(basePath.getGeocoderUrl(resp.coords.longitude, resp.coords.latitude))
-                .subscribe(data => {
-                    var geo = JSON.parse(data["_body"]);
-                    if (geo["status"]) {
-                        var result = geo["regeocode"];
-                        var cityName = result["addressComponent"]["city"];
-                        //远程调用接口获取地理编码
-                        this.http.get(basePath.getWeatherUrl(cityName))
-                            .subscribe(data => {
-                                var geo = JSON.parse(data["_body"]);
-                                if (geo["resultcode"] === "200") {
-                                    //封装数据信息
-                                    this.setWeatherEntity(geo);
-                                }
-                            });
-                    }
-                });
-        });
+        //远程调用接口获取地理编码
+        this.http.get(basePath.getGeocoderUrl(this.longitude, this.latitude))
+            .subscribe(data => {
+                var geo = JSON.parse(data["_body"]);
+                if (geo["status"]) {
+                    var result = geo["regeocode"];
+                    var cityName = result["addressComponent"]["city"];
+                    //远程调用接口获取地理编码
+                    this.http.get(basePath.getWeatherUrl(cityName))
+                        .subscribe(data => {
+                            var geo = JSON.parse(data["_body"]);
+                            if (geo["resultcode"] === "200") {
+                                //封装数据信息
+                                this.setWeatherEntity(geo);
+                            }
+                        });
+                }
+            });
     }
 
     /**

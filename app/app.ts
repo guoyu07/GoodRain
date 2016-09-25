@@ -1,7 +1,7 @@
 import {Component, ViewChild} from '@angular/core';
 import {ionicBootstrap, Platform, MenuController, Nav} from 'ionic-angular';
 import {StatusBar} from 'ionic-native';
-import {LocalNotifications} from 'ionic-native';
+import {LocalNotifications, Geolocation} from 'ionic-native';
 import { Storage, LocalStorage } from 'ionic-angular';
 
 import {HomePage} from './pages/home/home';
@@ -19,10 +19,8 @@ class MyApp {
     @ViewChild(Nav) nav:Nav;
 
     // make HelloIonicPage the root (or first) page
-    rootPage:any = HomePage;
+    rootPage:any;
     pages:Array<{title: string, component: any}>;
-
-
 
     constructor(public platform:Platform, public menu:MenuController) {
         this.initializeApp();
@@ -35,8 +33,8 @@ class MyApp {
             {title: '反馈', component: FeedbackPage},
         ];
         var isExist = localStorage.getItem("flagVibrate");
-        if(!isExist){
-            localStorage.setItem("flagVibrate","vibrate");
+        if (!isExist) {
+            localStorage.setItem("flagVibrate", "vibrate");
         }
     }
 
@@ -46,6 +44,14 @@ class MyApp {
                 // Okay, so the platform is ready and our plugins are available.
                 // Here you can do any higher level native things you might need.
                 StatusBar.styleDefault();
+                //系统初始化加载权限
+                Geolocation.getCurrentPosition().then((resp) => {
+                    localStorage.setItem("longitude", resp.coords.longitude + "");
+                    localStorage.setItem("latitude", resp.coords.latitude + "");
+                    this.rootPage = HomePage;
+                }, (error)=> {
+
+                });
                 //添加定时器
                 LocalNotifications.schedule({
                     id: 1000,
