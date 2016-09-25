@@ -16,7 +16,7 @@
     <ion-grid>
         <ion-row>
             <ion-col width-33 *ngFor="let item of items">
-                <div (click)="clickCity($event,item)">{{item.cityName}}</div>
+                <div (tap)="clickCity($event,item)">{{item.cityName}}</div>
             </ion-col>
         </ion-row>
     </ion-grid>
