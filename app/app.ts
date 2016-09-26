@@ -25,6 +25,7 @@ class MyApp {
     constructor(public platform:Platform, public menu:MenuController) {
         this.initializeApp();
         //添加侧边栏需要的页面
+        this.rootPage = HomePage;
         this.pages = [
             {title: '当前地区', component: HomePage},
             {title: '城市列表', component: CitysPage},

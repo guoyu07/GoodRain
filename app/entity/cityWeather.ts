@@ -1,6 +1,6 @@
 export class CityWeather {
     /*城市名称*/
-    public city = "龙泉驿";
+    city = "龙泉驿";
     /*当前日期*/
     date_y = new Date().getFullYear + "年" + (new Date().getMonth() + 1) + "月" + new Date().getDate() + "日";
     /*穿着度*/

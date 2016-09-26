@@ -5,6 +5,9 @@
       background-color: #fff;
     }
   }
+  .toolbar-background {
+     border-bottom-width: 0;
+  }
 }
 
 .home-header::after {
@@ -22,6 +25,7 @@
 /* 内容区域 使用ionic自带的栅格系统*/
 .home-content {
 
+  /*第一个模块*/
   ion-row {
     /*顶部城市信息*/
     .city {
@@ -50,7 +54,19 @@
       white-space: nowrap;
     }
   }
-
+  /*第二个模块*/
+  .target {
+    font-size: 1.7rem;
+    ion-row {
+      ion-col:first-child {
+        text-align: right;
+      }
+      ion-col:last-child {
+        text-align: center;
+        padding-left: 1.5em;
+      }
+    }
+  }
 }
 
 ion-content {

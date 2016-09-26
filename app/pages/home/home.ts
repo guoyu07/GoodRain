@@ -29,6 +29,20 @@ export class HomePage {
         } else {
             this.geocodes = new CityWeather();
         }
+        //默认测试数据
+        this.geocodes = new CityWeather(
+            "龙泉驿",
+            "2015-2-1",
+            "舒适",
+            "可以",
+            "18℃~30℃",
+            "可以",
+            "多云",
+            "周六",
+            "东南分",
+            HomePage.getWeatherImgUrl("00"),
+            "23%"
+        );
     }
 
     //获得当前定位信息
@@ -80,7 +94,6 @@ export class HomePage {
 
     //根据返回的wid的大对应的图标url
     static getWeatherImgUrl(wid) {
-        console.log(wid);
         return "./img/weather/weather_" + wid + ".png";
     }
 

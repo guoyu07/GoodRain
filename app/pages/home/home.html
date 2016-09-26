@@ -35,4 +35,62 @@
             </ion-col>
         </ion-row>
     </ion-grid>
+    <ion-grid class="target">
+        <ion-row>
+            <ion-col width-33>
+                当前日期
+            </ion-col>
+            <ion-col width-67>
+                {{geocodes.date_y}}
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col width-33>
+                当天周几
+            </ion-col>
+            <ion-col width-67>
+                {{geocodes.week}}
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col width-33>
+                空气湿度
+            </ion-col>
+            <ion-col width-67>
+                {{geocodes.humidity}}
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col width-33>
+                大气风向
+            </ion-col>
+            <ion-col width-67>
+                {{geocodes.wind}}
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col width-33>
+                穿衣指数
+            </ion-col>
+            <ion-col width-67>
+                {{geocodes.dressing_index}}
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col width-33>
+                运动指数
+            </ion-col>
+            <ion-col width-67>
+                {{geocodes.exercise_index}}
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col width-33>
+                旅游指数
+            </ion-col>
+            <ion-col width-67>
+                {{geocodes.travel_index}}
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-content>
