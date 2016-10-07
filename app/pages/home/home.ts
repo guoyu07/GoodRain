@@ -22,6 +22,7 @@ export class HomePage {
         this.latitude = +localStorage.getItem("latitude");
         //权限判断
         this.flagVibrate = localStorage.getItem("flagVibrate");
+        //缓存数据判断
         var weaterObj = JSON.parse(localStorage.getItem("weatherEntity"));
         //获取缓存数据
         if (weaterObj) {
@@ -29,17 +30,17 @@ export class HomePage {
         }//设置默认值
         else {
             this.geocodes = new CityWeather(
-                "龙泉驿",
-                "2015年10月10日",
-                "舒适",
-                "可以",
-                "18℃~30℃",
-                "可以",
-                "多云",
-                "星期六",
-                "东南分",
-                HomePage.getWeatherImgUrl("00"),
-                "23%"
+                "2016年10月10日",
+                "易感冒",
+                "易着凉",
+                "不易运动",
+                "成都",
+                "47",
+                "良好",
+                "九月初九",
+                HomePage.getWeatherImgUrl(1),
+                "多云转晴",
+                "27"
             );
         }
     }
@@ -66,7 +67,6 @@ export class HomePage {
             });
     }
 
-
     /**
      * 根据城市名称获取当前城市天气
      * @param cityName 城市名称
@@ -78,7 +78,7 @@ export class HomePage {
         this.http.get(basePath.getWeatherUrl(cityName))
             .subscribe(data => {
                 var geo = JSON.parse(data["_body"]);
-                if (geo["resultcode"] === "200") {
+                if (geo["error_code"] === 0) {
                     //封装数据信息
                     this.setWeatherEntity(geo);
                     //数据加载成功之后,关闭加载框
@@ -91,16 +91,17 @@ export class HomePage {
             });
     }
 
-    //根据返回的wid的大对应的图标url
+    /**
+     * 根据返回的wid的大对应的图标url
+     * @param wid
+     * @returns {string}
+     */
     static getWeatherImgUrl(wid) {
         return "./img/weather/weather_" + wid + ".png";
     }
 
     //进入页面进行初始化定位信息,先从缓存数据中拿数据信息，没有在进行定位拿数据信息
     ionViewWillEnter() {
-        //获取经纬度
-        this.longitude = +localStorage.getItem("longitude");
-        this.latitude = +localStorage.getItem("latitude");
         //在请求定位信息
         var basePath = new BasePath(this.http);
         //远程调用接口获取地理编码
@@ -114,13 +115,18 @@ export class HomePage {
                     this.http.get(basePath.getWeatherUrl(cityName))
                         .subscribe(data => {
                             var geo = JSON.parse(data["_body"]);
-                            if (geo["resultcode"] === "200") {
+                            console.log("ionViewWillEnter...");
+                            console.log(geo);
+                            if (geo["error_code"] === 0) {
                                 //封装数据信息
                                 this.setWeatherEntity(geo);
+                            } else {
+                                console.error("远程接口调用调用问题...");
                             }
                         });
                 }
             });
+
     }
 
     /**
@@ -128,21 +134,25 @@ export class HomePage {
      * @param geo 天气实体信息
      */
     setWeatherEntity(geo) {
-        var sk = geo["result"]["sk"];
-        var today = geo["result"]["today"];
+        var sk = geo["result"]["data"];
+        var life = sk["life"];//天气行动指标
+        var pm25 = sk["pm25"];//pm2.5
+        var realtime = sk["realtime"];//当前时刻请求的天气数据
+        var weather = sk["weather"];//未来几天的天气信息
         //具体的城市天气预报信息
         this.geocodes = new CityWeather(
-            today["city"],
-            today["date_y"],
-            today["dressing_index"],
-            today["exercise_index"],
-            today["temperature"],
-            today["travel_index"],
-            today["weather"],
-            today["week"],
-            today["wind"],
-            HomePage.getWeatherImgUrl(today["weather_id"]["fa"]),
-            sk["humidity"]
+            life["date"],
+            life["info"]["chuanyi"][0],
+            life["info"]["ganmao"][0],
+            life["info"]["yundong"][0],
+            pm25["cityName"],
+            pm25["pm25"]["pm25"],
+            pm25["pm25"]["quality"],
+            realtime["moon"],
+            realtime["weather"]["humidity"],
+            HomePage.getWeatherImgUrl(realtime["weather"]["img"]),
+            realtime["weather"]["info"],
+            realtime["weather"]["temperature"]
         );
         //缓存数据信息
         var weatherEntity = this.geocodes;
@@ -150,3 +160,19 @@ export class HomePage {
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

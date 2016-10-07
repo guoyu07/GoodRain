@@ -2,7 +2,7 @@ import {Http} from '@angular/http';
 export class BasePath {
 
     //聚合数据请求API key
-    private jhUserKey = "7903992648da20f938f908d5a45bd0ac";
+    private jhUserKey = "60b95d6de3a9fb74f0f66a19d49c951e";
 
     //高德javascript For API 接口key
     private gdUserKey = "fbb8c7dce018aa6efc76eddce2a5cc2f";
@@ -17,7 +17,7 @@ export class BasePath {
      * @returns {string} 返回拼接好的请求路径
      */
     getWeatherUrl(cityName:string) {
-        return "http://v.juhe.cn/weather/index?cityname=" + cityName + "&dtype=&format=&key=" + this.jhUserKey;
+        return "http://op.juhe.cn/onebox/weather/query?cityname=" + cityName + "&key=" + this.jhUserKey;
     }
 
     /**

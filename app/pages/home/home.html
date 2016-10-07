@@ -16,17 +16,17 @@
     <ion-grid>
         <ion-row center>
             <ion-col offset-25 width-50 class="city">
-                {{geocodes.city}}
+                {{geocodes.cityName}}
             </ion-col>
         </ion-row>
         <ion-row>
             <ion-col offset-25 width-50 class="weather">
-                {{geocodes.weather}}
+                {{geocodes.info}}
             </ion-col>
         </ion-row>
         <ion-row>
             <ion-col offset-25 width-50 class="weather-icon">
-                <img src="{{geocodes.weather_id}}" alt="天气图片" *ngIf="geocodes.weather_id"/>
+                <img src="{{geocodes.img}}" alt="天气图片" *ngIf="geocodes.img"/>
             </ion-col>
         </ion-row>
         <ion-row>
@@ -41,15 +41,15 @@
                 当前日期
             </ion-col>
             <ion-col width-67>
-                {{geocodes.date_y}}
+                {{geocodes.nowDate}}
             </ion-col>
         </ion-row>
         <ion-row>
             <ion-col width-33>
-                当天周几
+                当前农历
             </ion-col>
             <ion-col width-67>
-                {{geocodes.week}}
+                {{geocodes.moon}}
             </ion-col>
         </ion-row>
         <ion-row>
@@ -62,10 +62,18 @@
         </ion-row>
         <ion-row>
             <ion-col width-33>
-                大气风向
+                PM25
             </ion-col>
             <ion-col width-67>
-                {{geocodes.wind}}
+                {{geocodes.pm25}}
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col width-33>
+                空气质量
+            </ion-col>
+            <ion-col width-67>
+                {{geocodes.quality}}
             </ion-col>
         </ion-row>
         <ion-row>
@@ -73,7 +81,7 @@
                 穿衣指数
             </ion-col>
             <ion-col width-67>
-                {{geocodes.dressing_index}}
+                {{geocodes.chuanyi}}
             </ion-col>
         </ion-row>
         <ion-row>
@@ -81,15 +89,15 @@
                 运动指数
             </ion-col>
             <ion-col width-67>
-                {{geocodes.exercise_index}}
+                {{geocodes.yundong}}
             </ion-col>
         </ion-row>
         <ion-row>
             <ion-col width-33>
-                旅游指数
+                感冒指数
             </ion-col>
             <ion-col width-67>
-                {{geocodes.travel_index}}
+                {{geocodes.ganmao}}
             </ion-col>
         </ion-row>
     </ion-grid>

@@ -59,6 +59,7 @@ class MyApp {
                     this.rootPage = HomePage;
                 }, (error)=> {
                     //定位失败
+                    console.log("定位失败...");
                 });
                 //添加定时器
                 LocalNotifications.schedule({
