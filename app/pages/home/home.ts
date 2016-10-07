@@ -11,7 +11,6 @@ import {CityWeather} from '../../entity/cityWeather';
 export class HomePage {
 
     geocodes;
-
     longitude:number;
     latitude:number;
 
@@ -23,26 +22,26 @@ export class HomePage {
         this.latitude = +localStorage.getItem("latitude");
         //权限判断
         this.flagVibrate = localStorage.getItem("flagVibrate");
-        let weaterObj = JSON.parse(localStorage.getItem("weatherEntity"));
+        var weaterObj = JSON.parse(localStorage.getItem("weatherEntity"));
+        //获取缓存数据
         if (weaterObj) {
             this.geocodes = weaterObj;
-        } else {
-            this.geocodes = new CityWeather();
+        }//设置默认值
+        else {
+            this.geocodes = new CityWeather(
+                "龙泉驿",
+                "2015年10月10日",
+                "舒适",
+                "可以",
+                "18℃~30℃",
+                "可以",
+                "多云",
+                "星期六",
+                "东南分",
+                HomePage.getWeatherImgUrl("00"),
+                "23%"
+            );
         }
-        //默认测试数据
-        this.geocodes = new CityWeather(
-            "龙泉驿",
-            "2015-2-1",
-            "舒适",
-            "可以",
-            "18℃~30℃",
-            "可以",
-            "多云",
-            "周六",
-            "东南分",
-            HomePage.getWeatherImgUrl("00"),
-            "23%"
-        );
     }
 
     //获得当前定位信息

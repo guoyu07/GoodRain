@@ -1,6 +1,6 @@
 import {Component, ViewChild} from '@angular/core';
 import {ionicBootstrap, Platform, MenuController, Nav} from 'ionic-angular';
-import {StatusBar} from 'ionic-native';
+import {StatusBar, BackgroundMode} from 'ionic-native';
 import {LocalNotifications, Geolocation} from 'ionic-native';
 import { Storage, LocalStorage } from 'ionic-angular';
 
@@ -45,25 +45,33 @@ class MyApp {
                 // Okay, so the platform is ready and our plugins are available.
                 // Here you can do any higher level native things you might need.
                 StatusBar.styleDefault();
+                //根据不同设备设置不同的状态栏颜色
+                if (this.platform.is('android')) {
+                    StatusBar.backgroundColorByHexString('#fff');
+                } else {
+                    StatusBar.overlaysWebView(false);
+                    StatusBar.backgroundColorByHexString('#fff');
+                }
                 //系统初始化加载权限
                 Geolocation.getCurrentPosition().then((resp) => {
                     localStorage.setItem("longitude", resp.coords.longitude + "");
                     localStorage.setItem("latitude", resp.coords.latitude + "");
                     this.rootPage = HomePage;
                 }, (error)=> {
-
+                    //定位失败
                 });
                 //添加定时器
                 LocalNotifications.schedule({
                     id: 1000,
                     text: '记得关注明天的天气，方便出行。',
-                    firstAt: new Date(new Date().getTime() + UtilBase.getSettingHourAndMinutes(10, 10)),
+                    firstAt: new Date(new Date().getTime() + UtilBase.getSettingHourAndMinutes(22, 0)),
                     every: "day",
                     icon: "res://local-warn"
                 });
-                //本地推送，点击之后的事件处理
-                LocalNotifications.on("click", function (notification) {
-                    console.log("亲，你已经点击了本地推送的信息。");
+                //设置后台运行状态
+                BackgroundMode.enable();
+                BackgroundMode.setDefaults({
+                    silent: true
                 });
             }
         );
@@ -78,7 +86,12 @@ class MyApp {
     }
 }
 
-ionicBootstrap(MyApp);
+ionicBootstrap(MyApp, null, {
+    activator: "highlight",//按钮点击效果
+    backButtonText: "返回",//返回按钮文案
+    tabsPlacement: "bottom",//tabs的位置
+    tabsHideOnSubPages: true,//进入子页是否隐藏底部栏
+});
 
 
 /*
